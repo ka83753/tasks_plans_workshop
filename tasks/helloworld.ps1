@@ -1,9 +1,7 @@
-Param(
-  $name
-)
+Param($name)
 
 if (!($name)) {
-  return "Hello World!"
+  Write-Output "Hello World!"
 } else {
-  return "Hello ${name}"
+  Write-Output "Hello ${name}"
 }
