@@ -1,0 +1,10 @@
+{
+    "description": "Displays system information for a given Windows node via systeminfo command",
+    "input_method": "powershell",
+    "parameters": {
+      "myparam1":  {
+        "description": "Your custom parameter",
+        "type": "String"
+      }
+    }
+}
