@@ -18,9 +18,10 @@ steps:
   - command: 'If (!(Get-PSRepository PSGallery)) { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;Register-PSRepository -Default }'
     targets: $targets
   - command: 'If (!(Get-Module SecurityPolicyDSC)) { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;Install-Module -Name SecurityPolicyDSC -Force }'
+    targets: $targets
   - task: tasks_and_plans_workshop::windowsfeature
     description: "Installs the IIS Windows Feature"
-    targets: "$targets"
+    targets: $targets
     parameters:
       action: install
       feature: Web-WebServer
