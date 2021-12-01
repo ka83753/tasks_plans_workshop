@@ -1,0 +1,15 @@
+parameters:
+  targets:
+    type: TargetSpec
+steps:
+  - name: installnginx
+    targets: $targets
+    resources:
+      - class: nginx
+  - name: deploycontent
+    targets: $targets
+    resources:
+      - file: /usr/share/nginx/html/index.html
+        parameters:
+          ensure: present
+          content: '<!DOCTYPE html><html><body><h1>My WebApp Site</h1><p>I used a Puppet plan to deploy this website.</p></body></html>'
