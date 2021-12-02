@@ -1,0 +1,13 @@
+{
+  "description": "This is a description for my Cross Platform example task",
+  "parameters": {
+    "myparam": {
+        "description": "This is a description for myparam",
+        "type": "String[1]"
+    }
+  },
+  "implementations": [
+    { "name": "mytask.sh", "requirements": ["shell"] },
+    { "name": "mytask.ps1", "requirements": ["powershell"] }
+  ]
+}
