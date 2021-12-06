@@ -4,15 +4,15 @@ parameters:
 steps:
   - command: iptables -I INPUT 9 -i ens5 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
     targets: $targets
-    description "Open port 80 for nginx"
+    description: "Open port 80 for nginx"
   - command: service iptables save
     targets: $targets
-    description "save firewall config"
+    description: "save firewall config"
   - name: installnginx
     targets: $targets
     resources:
       - class: nginx
-    description "install nginx"
+    description: "install nginx"
   - name: deploycontent
     targets: $targets
     resources:
@@ -20,4 +20,4 @@ steps:
         parameters:
           ensure: present
           content: '<!DOCTYPE html><html><body><h1>My WebApp Site</h1><p>I used a Puppet plan to deploy this website.</p></body></html>'
-    description "Create homepage"
+    description: "Create homepage"
