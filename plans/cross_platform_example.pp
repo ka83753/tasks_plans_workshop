@@ -17,9 +17,11 @@ plan tasks_plans_workshop::cross_platform_example(
   
   # Basic if else statement to ensure each task runs on a compatible target
     if ($win_targets) {
-      run_task('tasks_plans_workshop::mytask', $win_targets, {'myparam' => 'hello world' })
+      #run_task('tasks_plans_workshop::mytask', $win_targets, {'myparam' => 'hello world' })
+      run_command('ipconfig /all', $win_targets)
     } elsif ($nix_targets) {
-      run_task('tasks_plans_workshop::mytask', $nix_targets, {'myparam' => 'hello world' })
+      #run_task('tasks_plans_workshop::mytask', $nix_targets, {'myparam' => 'hello world' })
+      run_command('ip a', $nix_targets)
     } else  {
       fail_plan('OS is not compatible!')
   }
