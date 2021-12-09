@@ -1,0 +1,33 @@
+description: Simple yaml plan to install Apache with a homepage.
+
+parameters:
+  targets:
+    type: TargetSpec
+steps:
+  - name: installpkg
+    description: "Install httpd"
+    targets: $targets
+    resources:
+      - title: httpd
+        type: package
+        parameters:
+          ensure: present
+  - name: deployhomepage
+    description: "Create homepage"
+    targets: $targets
+    resources:
+      - title: /var/www/html/index.html
+        type: file
+        parameters:
+          ensure: present
+          content: '<!DOCTYPE html><html><body><h1>My WebApp Site</h1><p>This website was created with a yaml plan</p></body></html>'
+          mode: '0644'
+  - name: startapache 
+    description: "Start httpd"
+    targets: $targets
+    resources:
+      - title: httpd
+        type: service
+        parameters:
+          ensure: running
+          enable: true
