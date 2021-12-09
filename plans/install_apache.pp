@@ -5,21 +5,21 @@ plan tasks_plans_workshop::install_apache(
   TargetSpec $targets
 ) {
   apply_prep($targets)
-  $installpkg = apply($targets, {'_description' => "Install httpd"}) {
+  $installpkg = apply($targets, {'_description' => 'Install httpd'}) {
     package { 'httpd':
       ensure => 'present',
     }
   }
   apply_prep($targets)
-  $deployhomepage = apply($targets, {'_description' => "Create homepage"}) {
+  $deployhomepage = apply($targets, {'_description' => 'Create homepage'}) {
     file { '/var/www/html/index.html':
-      ensure => 'present',
+      ensure  => 'present',
       content => '<!DOCTYPE html><html><body><h1>My WebApp Site</h1><p>This website was created with a yaml plan</p></body></html>',
-      mode => '0644',
+      mode    => '0644',
     }
   }
   apply_prep($targets)
-  $startapache = apply($targets, {'_description' => "Start httpd"}) {
+  $startapache = apply($targets, {'_description' => 'Start httpd'}) {
     service { 'httpd':
       ensure => 'running',
       enable => true,
