@@ -6,7 +6,7 @@
 #
 # @param targets List of the targets for which to print the OS information.
 # @return List of strings formatted as "$target_name: $os"
-plan tasks_plans_workshop::info(TargetSpec $targets) {
+plan tasks_plans_workshop::hostinfo(TargetSpec $targets) {
   return run_task('facts', $targets, '_catch_errors' => true).reduce([]) |$info, $r| {
     if ($r.ok) {
       $info + "${r.target.name}: ${r[os][name]} ${r[os][release][full]} (${r[os][family]})"
