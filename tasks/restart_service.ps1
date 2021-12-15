@@ -4,10 +4,6 @@ param (
   [Parameter(Mandatory=$true)]
   [string[]]
   $service,
-  # Restart the service immediately
-  [Parameter(Mandatory=$false)]
-  [switch]
-  $norestart
 )
 
 foreach ($name in $service) {
@@ -23,8 +19,6 @@ foreach ($name in $service) {
     Stop-Service -InputObject $serviceObject -ErrorAction Stop
 
     Write-Output "Stopped service: $name"
-
-    if($norestart){continue}
 
     Start-Service -InputObject $serviceObject
 
