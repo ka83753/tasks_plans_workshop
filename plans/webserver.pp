@@ -1,10 +1,8 @@
-# @summary Example plan to (un)install a Windows IIS Webserver
+# @summary Example cross-platform plan to install a Webserver
 # @param targets The targets to run on.
-# @param action The action to perform (install/uninstall)
 
 plan tasks_plans_workshop::webserver(
   TargetSpec $targets,
-  String $action,
 ) {
 
   $targets.apply_prep
@@ -14,11 +12,8 @@ plan tasks_plans_workshop::webserver(
 
   # Basic if else statement to ensure each task runs on a compatible target
   if ($win_targets) {
-    out::message("Running task to $action iis_server on Windows targets")
-    run_task('tasks_plans_workshop::windowsfeature', $win_targets, {'action' => $action, feature => 'Web-Server'})
-    # If action is install write file, if uninstall delete file:
-    # write_file('Hello, world!', 'C:\inetpub\wwwroot\index.html', $targets)
-    # out::message('File created!')
+    out::message("Running task to install iis_server on Windows targets")
+    run_task('tasks_plans_workshop::windowsfeature', $win_targets, {'action' => 'install', feature => 'Web-Server'})
   }
   if ($nix_targets) {
     out::message("Running plan to install Apache on Linux targets")
